@@ -7,6 +7,7 @@ import Projects from '@/components/Projects';
 export default function LandingPage() {
   return (
     <div 
+    
       className="min-h-screen bg-linear-to-b from-[#021128] via-blue-950 to-blue-900 text-white relative overflow-hidden text-sm sm:text-base"
     >
       <Navigation/>
