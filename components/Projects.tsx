@@ -22,7 +22,7 @@ const projects = [
     description:
       'A scalable campus-based marketplace enabling students to buy and sell products seamlessly within their university community. Features secure payments, inventory management, multi-vendor support, and real-time notifications, all built with a robust full-stack architecture for optimal performance.',
     image: '/myplug.png',
-    link: 'https://www.myplug.com',
+    link: 'https://www.myplug.shop',
     color: 'bg-gray-800',
   },
 ];
