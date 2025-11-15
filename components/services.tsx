@@ -37,10 +37,10 @@ const services = [
 export default function Services() {
   return (
     <section className="py-8 bg-[#0F1E46] text-gray-100">
-      <div  style={{ fontFamily: "'Varela Round', sans-serif" }} className="max-w-5xl mx-auto px-4 text-center">
+      <div  style={{ fontFamily: "'Varela Round', sans-serif" }} className="max-w-4xl mx-auto px-4 text-center">
         <h2 className="text-5xl font-semibold mb-2">Our Services</h2>
         <p    style={{ fontFamily: "'Varela Round', sans-serif" }} className=" mb-6 text-sm font-semibold bg-linear-to-r from-blue-400 via-yellow-100 to-yellow-200 bg-clip-text text-transparent">
-          We offer a wide range of services to help you <span className="font-semibold">build and scale</span> your digital products. From
+          We offer lots services to help you <span className="font-semibold">build and scale</span> your digital products. From
           initial concept to deployment and beyond.
         </p>
 

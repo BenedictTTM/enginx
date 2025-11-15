@@ -1,6 +1,9 @@
 import React from 'react';
 import LightRays from '../components/ui/LightRays';
 import Services from '../components/services';
+import { MdStart } from "react-icons/md";
+import Navigation from '@/components/ui/Navigation';
+import Projects from '@/components/Projects';
 
 export default function LandingPage() {
   return (
@@ -8,35 +11,10 @@ export default function LandingPage() {
       className="min-h-screen bg-gradient-to-b from-[#021128] via-blue-950 to-blue-900 text-white relative overflow-hidden"
       style={{ fontSize: '13px' }}
     >
+      <Navigation/>
       {/* Load Varela Round for this session only */}
       <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet" />
-      {/* Navigation */}
-      <nav className="flex items-center justify-between px-4 sm:px-8 py-4 sm:py-6 max-w-7xl mx-auto border-b border-[#D4AF37]/40">
-        <div className="flex items-center gap-3">
-          {/* Logo image - drop `enginx-logo.png` into the `public/` folder */}
-          <img src="/engin.png" alt="Enginx" className="h-7 sm:h-8 object-contain" />
-          <span className="sr-only">Enginx</span>
-        </div>
 
-        <div className="hidden md:flex 
-        items-center gap-6">
-          <a href="#" className="hover:text-blue-400 transition-colors">Home</a>
-          <a href="#" className="hover:text-blue-400 transition-colors">About</a>
-          <a href="#" className="hover:text-blue-400 transition-colors">Services</a>
-          <a href="#" className="hover:text-blue-400 transition-colors">Contact</a>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <button className="hidden md:inline-block text-amber-200 px-5 py-2 rounded-full transition-colors text-xs sm:text-sm">
-            get started
-          </button>
-          <button aria-label="Open menu" className="md:hidden p-2 rounded-md hover:bg-white/10 transition-colors">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-      </nav>
 
       {/* Hero Section */}
       <div className="relative">
@@ -46,10 +24,10 @@ export default function LandingPage() {
             raysOrigin="bottom-center"
             raysColor="#00ffff"
             raysSpeed={1.5}
-            lightSpread={0.2}
-            rayLength={1.6}
+            lightSpread={0.5}
+            rayLength={1.7}
             followMouse={true}
-            mouseInfluence={0.1}
+            mouseInfluence={0.2}
             noiseAmount={0.1}
             distortion={0.05}
             className="w-full h-full"
@@ -57,14 +35,15 @@ export default function LandingPage() {
         </div>
 
         <main
-          className="max-w-5xl sm:max-w-6xl mx-auto px-4 sm:px-8 py-15 sm:py-20 text-center relative z-10"
+          className="max-w-5xl sm:max-w-6xl mx-auto px-4 sm:px-8 py-43 sm:py-32 text-center relative z-10"
           style={{ fontFamily: "'Varela Round', sans-serif" }}
         >
         {/* Content with relative positioning to appear above light rays */}
         <div className="relative">
-          <p className="text-xs sm:text-sm text-gray-400 mb-6 sm:mb-8">
-            Best services to scale your business
-          </p>
+          <div className="flex items-center justify-center gap-2 mb-6 sm:mb-8">
+            <span className="h-2 w-2 rounded-full bg-amber-400 inline-block glow-bip" aria-hidden="true" />
+            <p className="text-xs sm:text-sm text-gray-400 m-0">Best services to scale your business</p>
+          </div>
 
           <h1 className="text-xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">
             Need software?  No problem.
@@ -95,6 +74,8 @@ export default function LandingPage() {
       
       {/* Services Section */}
       <Services />
+      {/* Projects Section */}
+      <Projects />
     </div>
   );
 }
