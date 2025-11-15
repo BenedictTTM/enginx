@@ -36,10 +36,10 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="py-8 bg-[#0F1E46] text-gray-100">
-      <div  style={{ fontFamily: "'Varela Round', sans-serif" }} className="max-w-4xl mx-auto px-4 text-center">
-        <h2 className="text-5xl font-semibold mb-2">Our Services</h2>
-        <p    style={{ fontFamily: "'Varela Round', sans-serif" }} className=" mb-6 text-sm font-semibold bg-linear-to-r from-blue-400 via-yellow-100 to-yellow-200 bg-clip-text text-transparent">
+    <section id="services" className="py-8 bg-[#0F1E46] text-gray-100">
+      <div className="max-w-4xl mx-auto px-4 text-center">
+        <h2 className="text-3xl sm:text-5xl font-semibold mb-2">Our Services</h2>
+        <p className="mb-6 text-xs sm:text-sm font-semibold bg-linear-to-r from-blue-400 via-yellow-100 to-yellow-200 bg-clip-text text-transparent">
           We offer lots services to help you <span className="font-semibold">build and scale</span> your digital products. From
           initial concept to deployment and beyond.
         </p>
@@ -54,12 +54,12 @@ export default function Services() {
               >
                 <div>
                   <div className="mb-2">
-                    <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-[#f6ecd4]/25 to-transparent">
+                    <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-linear-to-br from-[#f6ecd4]/25 to-transparent">
                       {service.icon}
                     </span>
                   </div>
-                  <h3 className="text-base font-semibold mb-1">{service.title}</h3>
-                  <p className="text-gray-400 mb-2 text-xs">{service.description}</p>
+                  <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-1">{service.title}</h3>
+                  <p className="text-gray-400 mb-2 text-xs sm:text-sm">{service.description}</p>
 
                   {service.features && (
                     <ul className="space-y-1">

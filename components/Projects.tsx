@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
+import Image from 'next/image';
 
 const projects = [
   {
@@ -28,7 +29,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section style={{ fontFamily: "'Varela Round', sans-serif" }} className=" bg-[#0F1E46] md:py-17 sm:py-6 text-white">
+    <section id="projects" className="font-varela-round bg-[#0F1E46] md:py-17 sm:py-6 text-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-6">
           <h2 className="text-3xl sm:text-5xl font-bold mb-2">Featured Projects</h2>
@@ -38,19 +39,21 @@ export default function Projects() {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-2">
-          {projects.map((project, idx) => (
+          {projects.map((project) => (
             <div
               key={project.id}
               className={`group relative  ${project.color} backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-gray-600 transition-all duration-300 hover:scale-[1.01]`}
             >
               {/* Project Image/Mockup */}
-              <div className="relative h-56 sm:h-72 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden">
-                <img
+              <div className="relative h-56 sm:h-72 bg-linear-to-br from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden">
+                <Image
                   src={project.image}
                   alt={project.title}
+                  fill
                   className="max-w-full max-h-full object-contain object-center group-hover:scale-101 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-t from-gray-900/60 via-transparent to-transparent pointer-events-none" />
               </div>
 
               {/* Content */}
@@ -84,17 +87,14 @@ export default function Projects() {
               </div>
 
               {/* Decorative corner accent */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-400/10 to-transparent blur-2xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-amber-400/10 to-transparent blur-2xl pointer-events-none" />
             </div>
           ))}
         </div>
 
         {/* View All Projects CTA */}
         <div className="text-center mt-6">
-          <button className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-5 py-2 rounded-full font-medium border border-gray-600/50 hover:border-gray-500 transition-all text-sm">
-            View All Projects
-            <FaArrowRight className="w-3 h-3" />
-          </button>
+       
         </div>
       </div>
     </section>

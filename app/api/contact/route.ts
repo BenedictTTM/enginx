@@ -103,8 +103,8 @@ export async function POST(request: NextRequest): Promise<NextResponse<ContactRe
               }
               .wrapper { 
                 background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
-                padding: 50px 20px;
-                min-height: 100vh;
+                padding: 24px 12px;
+                min-height: auto;
               }
               .container { 
                 max-width: 600px; 
@@ -115,7 +115,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<ContactRe
                 box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
               }
               .header { 
-                background: linear-gradient(135deg, #2d3e50 0%, #3d5166 100%);
+                background: linear-gradient(135deg, #162633 0%, #243a4b 100%);
                 color: #ffffff; 
                 padding: 0 40px;
                 position: relative;
@@ -123,7 +123,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<ContactRe
               .header-content {
                 display: table;
                 width: 100%;
-                padding: 36px 0;
+                padding: 20px 0;
               }
               .logo-container {
                 display: table-cell;
@@ -133,16 +133,17 @@ export async function POST(request: NextRequest): Promise<NextResponse<ContactRe
               .logo {
                 width: 56px;
                 height: 56px;
-                background: #ffffff;
-                border-radius: 50%;
-                padding: 10px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                background: transparent;
+                border-radius: 0;
+                padding: 0;
+                box-shadow: none;
               }
               .logo img {
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
                 display: block;
+                border-radius: 6px; /* subtle rounding without white circle */
               }
               .header-text {
                 display: table-cell;
@@ -163,14 +164,14 @@ export async function POST(request: NextRequest): Promise<NextResponse<ContactRe
                 font-weight: 400;
               }
               .content { 
-                padding: 44px 40px;
+                padding: 20px 20px;
                 background: #ffffff;
               }
               .info-section {
                 background: #ffffff;
               }
               .info-row {
-                padding: 20px 0;
+                padding: 12px 0;
                 border-bottom: 1px solid #e8ecf1;
               }
               .info-row:first-child {
@@ -196,27 +197,26 @@ export async function POST(request: NextRequest): Promise<NextResponse<ContactRe
                 font-weight: 400;
               }
               .value a {
-                color: #2563eb;
+                color: #1e40af; /* darker blue */
                 text-decoration: none;
                 font-weight: 500;
                 transition: color 0.2s ease;
               }
               .value a:hover {
-                color: #1d4ed8;
+                color: #153d8b;
               }
               .message-content {
-                background: #f8fafc;
-                padding: 24px;
-                border-radius: 10px;
-                border-left: 3px solid #2563eb;
-                margin-top: 10px;
+                background: #f3f4f6; /* neutral, minimal highlight */
+                padding: 12px;
+                border-radius: 8px;
+                margin-top: 8px;
                 color: #334155;
                 font-size: 15px;
-                line-height: 1.8;
+                line-height: 1.6;
               }
               .footer { 
                 background: #f8fafc;
-                padding: 28px 40px;
+                padding: 16px 20px;
                 text-align: center;
                 border-top: 1px solid #e8ecf1;
               }
@@ -351,8 +351,8 @@ Sent at: ${new Date().toLocaleString()}
               }
               .wrapper { 
                 background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
-                padding: 50px 20px;
-                min-height: 100vh;
+                padding: 24px 12px;
+                min-height: auto;
               }
               .container { 
                 max-width: 600px; 
@@ -363,42 +363,43 @@ Sent at: ${new Date().toLocaleString()}
                 box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
               }
               .header { 
-                background: linear-gradient(135deg, #2d3e50 0%, #3d5166 100%);
+                background: linear-gradient(135deg, #162633 0%, #243a4b 100%);
                 color: #ffffff; 
-                padding: 48px 40px;
+                padding: 28px 20px;
                 text-align: center;
                 position: relative;
               }
               .logo {
                 width: 72px;
                 height: 72px;
-                background: #ffffff;
-                border-radius: 50%;
-                padding: 12px;
-                margin: 0 auto 24px;
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+                background: transparent;
+                border-radius: 0;
+                padding: 0;
+                margin: 0 auto 12px;
+                box-shadow: none;
               }
               .logo img {
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
                 display: block;
+                border-radius: 6px; /* subtle rounding without white circle */
               }
               .header h1 {
                 margin: 0 0 8px 0;
-                font-size: 28px;
+                font-size: 24px;
                 font-weight: 600;
-                letter-spacing: -0.5px;
-                line-height: 1.3;
+                letter-spacing: -0.4px;
+                line-height: 1.25;
               }
               .header p {
                 margin: 0;
-                font-size: 15px;
+                font-size: 14px;
                 opacity: 0.92;
                 font-weight: 400;
               }
               .content { 
-                padding: 48px 40px;
+                padding: 20px 20px;
                 background: #ffffff;
               }
               .greeting {
@@ -415,11 +416,11 @@ Sent at: ${new Date().toLocaleString()}
                 margin-bottom: 24px;
               }
               .message-box { 
-                background: #f8fafc;
-                padding: 28px;
-                border-radius: 12px;
-                border-left: 3px solid #2563eb;
-                margin: 32px 0;
+                background: #f3f4f6;
+                padding: 12px 14px;
+                border-radius: 8px;
+                margin: 18px 0;
+                border-left: none;
               }
               .message-label {
                 display: block;
@@ -437,11 +438,11 @@ Sent at: ${new Date().toLocaleString()}
                 margin: 0;
               }
               .cta-section {
-                background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-                padding: 24px;
-                border-radius: 12px;
-                margin: 28px 0;
-                border: 1px solid #bae6fd;
+                background: linear-gradient(135deg, #f7fbff 0%, #f2f9ff 100%);
+                padding: 14px;
+                border-radius: 10px;
+                margin: 18px 0;
+                border: 1px solid #e6f3ff;
               }
               .cta-text {
                 color: #0c4a6e;
@@ -450,12 +451,12 @@ Sent at: ${new Date().toLocaleString()}
                 margin: 0;
               }
               .signature {
-                margin-top: 36px;
-                padding-top: 28px;
+                margin-top: 24px;
+                padding-top: 18px;
                 border-top: 1px solid #e8ecf1;
                 color: #475569;
                 font-size: 15px;
-                line-height: 1.7;
+                line-height: 1.6;
               }
               .signature-name {
                 font-weight: 600;
@@ -466,7 +467,7 @@ Sent at: ${new Date().toLocaleString()}
               }
               .footer { 
                 background: #f8fafc;
-                padding: 32px 40px;
+                padding: 12px 16px;
                 text-align: center;
                 border-top: 1px solid #e8ecf1;
               }
@@ -520,7 +521,7 @@ Sent at: ${new Date().toLocaleString()}
                   
                   <div class="signature">
                     Best regards,<br>
-                    <span class="signature-name">Engin</span>
+                    <span class="signature-name">EnginX</span>
                   </div>
                 </div>
                 <div class="footer">

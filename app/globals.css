@@ -121,6 +121,11 @@
   }
 }
 
+/* Mapping for Varela Round from next/font */
+.font-varela-round {
+  font-family: var(--font-varela-round);
+}
+
 /* Subtle glow / bip animation for the yellow dot in the hero */
 .glow-bip {
   animation: glowBip 1.6s ease-in-out infinite;

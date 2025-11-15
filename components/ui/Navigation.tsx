@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,8 +19,8 @@ const Navigation = () => {
 
   const navItems = [
     { to: "/#home", label: "Home" },
-    { to: "/about", label: "About" },
-    { to: "/#services", label: "Services" },
+    { to: "/#about", label: "About" },
+    { to: "/#projects", label: "Projects" },
     { to: "/contact", label: "Contact" },
   ]
 
@@ -39,10 +40,13 @@ const Navigation = () => {
           }`}>
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <img
+            <Image
               src="/engin.png"
               alt="Prosupport Logo"
-              className="h-8 w-auto"
+              className="h-8 w-auto object-contain"
+              width={120}
+              height={32}
+              priority
             />
           </Link>
 
@@ -61,7 +65,7 @@ const Navigation = () => {
 
           {/* CTA */}
           <div className="hidden md:block">
-            <Link href="/services" className="inline-block">
+            <Link href="/#services" className="inline-block">
                 <button type="button" className="bg-linear-to-r from-blue-400 via-yellow-100 to-yellow-200 bg-clip-text text-transparent border border-gray-700 px-3 py-1 rounded hover:bg-gray-700 hover:text-white transition-colors">
                     Our Services
                 </button>
@@ -73,7 +77,6 @@ const Navigation = () => {
             className="md:hidden p-2"
             onClick={toggleMenu}
             aria-label="Toggle menu"
-            aria-expanded={isOpen}
             type="button"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -94,7 +97,7 @@ const Navigation = () => {
                   {item.label}
                 </Link>
               ))}
-                <Link href="/services" className="w-full" onClick={closeMenu}>
+                <Link href="/#services" className="w-full" onClick={closeMenu}>
                     <button type="button" className="w-full mt-2 text-gray-800 border border-gray-400 rounded-md px-3 py-2">
                         Our Services
                     </button>
