@@ -29,11 +29,11 @@ const Navigation = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "pt-2" : "pt-4"}`}>
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "pt-1" : "pt-3"}`}>
       <div
         className={`container mx-auto transition-all duration-300 ${isScrolled ? "max-w-4xl" : "max-w-7xl"}`}>
         <nav
-          className={`flex items-center justify-between px-6 py-3 transition-all duration-300 ${
+          className={`flex items-center justify-between px-4 md:px-6 py-2 md:py-3 transition-all duration-300 ${
             isScrolled
               ? "bg-gray-600/80 backdrop-blur-md rounded-full shadow-lg "
               : "bg-transparent"
@@ -43,7 +43,7 @@ const Navigation = () => {
             <Image
               src="/engin.png"
               alt="Prosupport Logo"
-              className="h-8 w-auto object-contain"
+              className="h-6 md:h-8 w-auto object-contain"
               width={120}
               height={32}
               priority
@@ -85,7 +85,7 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden mt-2 bg-white rounded-xl shadow-lg p-4 animate-fadeUp">
+          <div className="md:hidden mt-2 bg-white rounded-xl shadow-lg p-3 animate-fadeUp">
             <div className="flex flex-col space-y-3">
               {navItems.map((item) => (
                 <Link
@@ -98,7 +98,7 @@ const Navigation = () => {
                 </Link>
               ))}
                 <Link href="/#services" className="w-full" onClick={closeMenu}>
-                    <button type="button" className="w-full mt-2 text-gray-800 border border-gray-400 rounded-md px-3 py-2">
+                  <button type="button" className="w-full mt-2 text-gray-800 border border-gray-400 rounded-md px-3 py-2">
                         Our Services
                     </button>
                 </Link>
