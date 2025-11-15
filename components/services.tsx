@@ -50,7 +50,7 @@ export default function Services() {
             return (
               <div
                 key={idx}
-              className={`bg-gray-800 p-3 rounded-md shadow hover:shadow-lg transition h-full flex flex-col border border-[#f6ecd4]/20 hover:border-[#f6ecd4]/40 ${isHero ? 'lg:col-span-2 text-left justify-between' : ''}`}
+              className={`bg-[#0b2540] p-3 rounded-md shadow hover:shadow-lg transition h-full flex flex-col border border-[#f6ecd4]/20 hover:border-[#f6ecd4]/40 ${isHero ? 'lg:col-span-2 text-left justify-between' : ''}`}
               >
                 <div>
                   <div className="mb-2">

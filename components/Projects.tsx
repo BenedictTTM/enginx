@@ -12,7 +12,7 @@ const projects = [
     description:
       'An interactive educational platform designed to teach students the fundamentals of web development and coding. Built with modern technologies, it features comprehensive tutorials, hands-on coding exercises, and real-time progress tracking to help aspiring developers master their skills.',
     image: '/scrum.png',
-    link: '#',
+    link: 'https://scrummaster-ochre.vercel.app/',
     color: 'bg-gray-800',
   },
   {
@@ -22,7 +22,7 @@ const projects = [
     description:
       'A scalable campus-based marketplace enabling students to buy and sell products seamlessly within their university community. Features secure payments, inventory management, multi-vendor support, and real-time notifications, all built with a robust full-stack architecture for optimal performance.',
     image: '/myplug.png',
-    link: '#',
+    link: 'https://www.myplug.com',
     color: 'bg-gray-800',
   },
 ];
@@ -79,6 +79,8 @@ export default function Projects() {
 
                 <a
                   href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-amber-200 hover:text-amber-100 font-medium transition-colors group/link text-sm"
                 >
                   <span>View Live Site</span>
