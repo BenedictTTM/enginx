@@ -148,3 +148,28 @@
     background-color: rgba(246,236,212,0.95);
   }
 }
+
+/* Blob Animation */
+@keyframes blob-float {
+  0%, 100% {
+    transform: translate(-50%, -25%) scale(1);
+  }
+  25% {
+    transform: translate(-70%, 0%) scale(1.1);
+  }
+  50% {
+    transform: translate(-40%, 25%) scale(0.9);
+  }
+  75% {
+    transform: translate(-60%, 10%) scale(1.05);
+  }
+}
+
+/* Applying the animation to a utility class */
+.animate-blob-float {
+  animation: blob-float 9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.animation-delay-4000 {
+  animation-delay: -4s;
+}

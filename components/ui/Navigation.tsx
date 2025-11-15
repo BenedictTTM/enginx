@@ -19,14 +19,31 @@ const Navigation = () => {
 
   const navItems = [
     { to: "/#home", label: "Home" },
-    { to: "/#about", label: "About" },
+    { to: "/about", label: "About" },
     { to: "/#projects", label: "Projects" },
     { to: "/contact", label: "Contact" },
   ]
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+  
+  useEffect(() => {
+    // lock body scroll when mobile menu is open
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
 
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "pt-1" : "pt-3"}`}>
@@ -79,29 +96,48 @@ const Navigation = () => {
             aria-label="Toggle menu"
             type="button"
           >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
           </button>
         </nav>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden mt-2 bg-white rounded-xl shadow-lg p-3 animate-fadeUp">
-            <div className="flex flex-col space-y-3">
-              {navItems.map((item) => (
-                <Link
-                  key={item.to}
-                  href={item.to}
-                  className="text-gray-700 hover:text-primary-teal py-2 rounded-md text-center font-medium"
-                  onClick={closeMenu}
-                >
-                  {item.label}
-                </Link>
-              ))}
-                <Link href="/#services" className="w-full" onClick={closeMenu}>
-                  <button type="button" className="w-full mt-2 text-gray-800 border border-gray-400 rounded-md px-3 py-2">
-                        Our Services
-                    </button>
-                </Link>
+          <div className="md:hidden fixed inset-0 z-40" role="dialog" aria-modal="true">
+            {/* backdrop - clicking closes */}
+            <div
+              className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+              onClick={closeMenu}
+            />
+
+            {/* panel */}
+            <div className="absolute top-[68px] left-4 right-4 mx-auto max-w-md">
+              <div
+                className="bg-gradient-to-b from-[#07172b] to-[#0b2540] rounded-xl shadow-2xl p-5 ring-1 ring-white/5 transform transition duration-250"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex justify-end">
+                  <button onClick={closeMenu} aria-label="Close menu" className="p-2">
+                    <X className="h-5 w-5 text-white/90" />
+                  </button>
+                </div>
+
+                <nav className="mt-1 flex flex-col">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.to}
+                      href={item.to}
+                      onClick={closeMenu}
+                      className="block text-white text-lg py-3 px-3 rounded-md text-center font-medium hover:bg-white/5 transition"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+
+                  <Link href="/#services" onClick={closeMenu} className="mt-4">
+                    <button type="button" className="w-full bg-white text-blue-900 font-semibold px-4 py-3 rounded-lg shadow">Our Services</button>
+                  </Link>
+                </nav>
+              </div>
             </div>
           </div>
         )}

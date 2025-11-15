@@ -1,7 +1,7 @@
 import React from 'react';
+import Link from 'next/link';
 import LightRays from '../components/ui/LightRays';
 import Services from '../components/services';
-import Navigation from '@/components/ui/Navigation';
 import Projects from '@/components/Projects';
 
 export default function LandingPage() {
@@ -10,7 +10,13 @@ export default function LandingPage() {
     
       className="min-h-screen bg-linear-to-b from-[#021128] via-blue-950 to-blue-900 text-white relative overflow-hidden text-sm sm:text-base"
     >
-      <Navigation/>
+      {/* Animated Blob */}
+      <div className="absolute top-1/4 -left-32 w-[28rem] h-[28rem] bg-gradient-to-br from-purple-600 via-blue-500 to-teal-400 rounded-full filter blur-3xl opacity-20 animate-blob-float"></div>
+      <div className="absolute bottom-1/4 -right-32 w-[28rem] h-[28rem] bg-gradient-to-tr from-yellow-400 via-pink-500 to-red-500 rounded-full filter blur-3xl opacity-20 animate-blob-float animation-delay-4000"></div>
+      {/* Animated Blob */}
+      <div className="absolute -z-10 top-1/4 left-1/2 -translate-x-1/2 w-[30rem] h-[30rem] bg-gradient-to-br from-yellow-300 via-amber-400 to-orange-500 rounded-full filter blur-3xl opacity-40 animate-[blob-float_18s_cubic-bezier(0.68,-0.55,0.27,1.55)_infinite]" />
+
+
       {/* Hero Section */}
       <div className="relative">
         {/* Light rays background for hero section only */}
@@ -53,12 +59,8 @@ export default function LandingPage() {
         </div>
 
         <div className="relative flex flex-col sm:flex-row items-center justify-center gap-3 mt-6">
-          <button className="w-full sm:w-auto bg-white text-slate-900 px-5 sm:px-8 md:px-10 py-2.5 sm:py-3 rounded-full font-medium hover:bg-gray-100 transition-colors text-sm sm:text-base">
-            Get started
-          </button>
-          <button className="w-full sm:w-auto border-2 border-white px-5 sm:px-8 md:px-10 py-2.5 sm:py-3 rounded-full font-medium hover:bg-white hover:text-slate-900 transition-colors text-sm sm:text-base">
-            Learn more
-          </button>
+          <Link href="/contact" className="w-full sm:w-auto text-center bg-white text-slate-900 px-5 sm:px-8 md:px-10 py-2.5 sm:py-3 rounded-full font-medium hover:bg-gray-100 transition-colors text-sm sm:text-base">Get started</Link>
+          <Link href="/about" className="w-full sm:w-auto text-center border-2 border-white px-5 sm:px-8 md:px-10 py-2.5 sm:py-3 rounded-full font-medium hover:bg-white hover:text-slate-900 transition-colors text-sm sm:text-base">Learn more</Link>
         </div>
 
       
@@ -66,14 +68,6 @@ export default function LandingPage() {
         </main>
       </div>
       
-      {/* About Section */}
-      <section id="about" className="py-12 bg-transparent text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-2">About</h2>
-          <p className="text-gray-300 max-w-3xl mx-auto">We build robust, scalable software systems that help businesses scale efficiently and reliably. From product design to deployment and support, we handle the complexities so you do not have to.</p>
-        </div>
-      </section>
-
       {/* Services Section */}
       <Services />
       {/* Projects Section */}
