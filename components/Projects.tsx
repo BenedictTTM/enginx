@@ -94,10 +94,6 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* View All Projects CTA */}
-        <div className="text-center mt-6">
-       
-        </div>
       </div>
     </section>
   );

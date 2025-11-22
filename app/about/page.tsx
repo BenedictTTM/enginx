@@ -1,6 +1,19 @@
-'use client';
-
 import React from "react";
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Enginx — Global SaaS Engineering for Modern Businesses',
+  description: 'Enginx is a SaaS company providing fast, secure, and scalable software solutions with AI optimization and 99.99% uptime. Built for companies, developers, and startups in Ghana and globally.',
+  keywords: ['about enginx', 'saas company ghana', 'software engineering ghana', 'tech company africa', 'global saas platform', 'secure cloud api africa'],
+  openGraph: {
+    title: 'About Enginx',
+    description: 'Learn about Enginx, the SaaS platform delivering fast, secure, scalable software solutions globally.',
+    url: 'https://www.enginx.site/about',
+  },
+  alternates: {
+    canonical: 'https://www.enginx.site/about',
+  },
+};
 
 export default function AboutSection() {
   return (
@@ -113,6 +126,29 @@ We create software that makes complex tasks simple and helps businesses reach th
           </div>
         </div>
       </div>
+      {/* JSON-LD structured data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "Enginx",
+            url: "https://www.enginx.site",
+            applicationCategory: "SaaS",
+            operatingSystem: "All",
+            provider: {
+              "@type": "Organization",
+              name: "Enginx",
+            },
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "USD",
+            },
+          }),
+        }}
+      />
     </div>
   );
 }

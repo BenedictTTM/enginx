@@ -1,13 +1,29 @@
 import React from 'react';
 import Link from 'next/link';
+import { Metadata } from 'next';
 import LightRays from '../components/ui/LightRays';
 import Services from '../components/services';
 import Projects from '@/components/Projects';
 
+export const metadata: Metadata = {
+  title: 'Enginx — Fast, Secure & Scalable SaaS Solutions for Businesses Worldwide',
+  description: 'Enginx delivers lightning-fast APIs, 99.99% uptime, enterprise-grade security, AI performance optimization, and scalable SaaS solutions for companies in Ghana and across the world.',
+  keywords: ['enginx', 'saas in ghana', 'software company ghana', 'api hosting ghana', 'enterprise software africa', 'scalable software solutions', 'ai performance software', 'secure api service', 'cloud saas platform', 'ghana tech startup solutions', 'global saas provider'],
+  openGraph: {
+    title: 'Enginx — Fast & Reliable SaaS Solutions',
+    description: 'High-performance APIs, AI optimization, enterprise security, and 99.99% uptime for businesses worldwide.',
+
+    url: 'https://www.enginx.site',
+    type: 'website',
+  },
+  alternates: {
+    canonical: 'https://www.enginx.site',
+  },
+};
+
 export default function LandingPage() {
   return (
-    <div 
-    
+    <div
       className="min-h-screen bg-linear-to-b from-[#021128] via-blue-950 to-blue-900 text-white relative overflow-hidden text-sm sm:text-base"
     >
       {/* Animated Blob */}
@@ -72,6 +88,29 @@ export default function LandingPage() {
       <Services />
       {/* Projects Section */}
       <Projects />
+      {/* JSON-LD structured data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "Enginx",
+            url: "https://www.enginx.site",
+            applicationCategory: "SaaS",
+            operatingSystem: "All",
+            provider: {
+              "@type": "Organization",
+              name: "Enginx",
+            },
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "USD",
+            },
+          }),
+        }}
+      />
     </div>
   );
 }
