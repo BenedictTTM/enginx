@@ -1,22 +1,30 @@
 import { MetadataRoute } from 'next'
 
+const SITE_URL = (process.env.SITE_URL || 'https://www.cilcahair.com').replace(/\/$/, '')
+
+function fullUrl(path: string) {
+  if (!path.startsWith('/')) path = `/${path}`
+  return `${SITE_URL}${path}`
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date()
   return [
     {
-      url: 'https://www.enginx.site',
-      lastModified: new Date(),
+      url: SITE_URL,
+      lastModified: now,
       changeFrequency: 'yearly',
       priority: 1,
     },
     {
-      url: 'https://www.enginx.site/about',
-      lastModified: new Date(),
+      url: fullUrl('/about'),
+      lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://www.enginx.site/contact',
-      lastModified: new Date(),
+      url: fullUrl('/contact'),
+      lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
