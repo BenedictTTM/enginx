@@ -7,22 +7,22 @@ import Image from 'next/image';
 const projects = [
   {
     id: 1,
-    title: 'Scrum Master Portfolio',
+    title: 'InTheRoom',
     tags: ['Next.js', 'Tailwind CSS'],
     description:
-      'An interactive educational platform designed to teach students the fundamentals of web development and coding. Built with modern technologies, it features comprehensive tutorials, hands-on coding exercises, and real-time progress tracking to help aspiring developers master their skills.',
-    image: '/scrum.png',
-    link: 'https://scrummaster-ochre.vercel.app/',
+      'A community that promotes faith, love, and hope, inspiring one another to adopt the life of Christ.',
+    image: '/intheroom.png',
+    link: 'https://intheroom.site',
     color: 'bg-gray-800',
   },
   {
     id: 2,
-    title: 'MyPlug Campus E-Commerce',
+    title: 'Qualipro Consult',
     tags: ['Next.js', 'Nest.js', 'Node.js'],
     description:
-      'A scalable campus-based marketplace enabling students to buy and sell products seamlessly within their university community. Features secure payments, inventory management, multi-vendor support, and real-time notifications, all built with a robust full-stack architecture for optimal performance.',
-    image: '/myplug.png',
-    link: 'https://www.myplug.shop',
+      'QualiPRO Consult is a quality management systems, compliance, and training consultancy dedicated to designing and implementing sustainable management systems tailored to your needs.',
+    image: '/qualiproconsult.png',
+    link: 'https://qualiproconsult.com',
     color: 'bg-gray-800',
   },
 ];
