@@ -13,7 +13,7 @@ const projects = [
       'A community that promotes faith, love, and hope, inspiring one another to adopt the life of Christ.',
     image: '/intheroom.png',
     link: 'https://intheroom.site',
-    color: '',
+    color: 'bg-gray-800',
   },
   {
     id: 2,
@@ -42,10 +42,10 @@ export default function Projects() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className={`group relative  ${project.color} backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-gray-600 transition-all duration-300 hover:scale-[1.01]`}
+              className="group relative transition-all duration-300 hover:scale-[1.01] flex flex-col h-full"
             >
               {/* Project Image/Mockup */}
-              <div className="relative h-56 sm:h-72  flex items-center justify-center overflow-hidden">
+              <div className="relative h-56 sm:h-72 flex items-center justify-center">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -53,11 +53,10 @@ export default function Projects() {
                   className="max-w-full max-h-full object-contain object-center group-hover:scale-101 transition-transform duration-500"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-gray-900/60 via-transparent to-transparent pointer-events-none" />
               </div>
    
               {/* Content */}
-              <div className="p-3 sm:p-5">
+              <div className={`p-3 sm:p-5 ${project.color} backdrop-blur-sm rounded-2xl border border-gray-700/50 hover:border-gray-600 transition-all duration-300 flex-1 flex flex-col`}>
                 <div className="flex flex-wrap gap-2 mb-3">
                   {project.tags.map((tag, tagIdx) => (
                     <span
@@ -77,19 +76,18 @@ export default function Projects() {
                   {project.description}
                 </p>
 
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-amber-200 hover:text-amber-100 font-medium transition-colors group/link text-sm"
-                >
-                  <span>View Live Site</span>
-                  <FaArrowRight className="w-3 h-3 group-hover/link:translate-x-1 transition-transform" />
-                </a>
+                <div className="mt-auto">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-amber-200 hover:text-amber-100 font-medium transition-colors group/link text-sm"
+                  >
+                    <span>View Live Site</span>
+                    <FaArrowRight className="w-3 h-3 group-hover/link:translate-x-1 transition-transform" />
+                  </a>
+                </div>
               </div>
-
-              {/* Decorative corner accent */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-amber-400/10 to-transparent blur-2xl pointer-events-none" />
             </div>
           ))}
         </div>
