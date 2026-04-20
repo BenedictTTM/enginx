@@ -13,7 +13,7 @@ const projects = [
       'A community that promotes faith, love, and hope, inspiring one another to adopt the life of Christ.',
     image: '/intheroom.png',
     link: 'https://intheroom.site',
-    color: 'bg-gray-800',
+    color: '',
   },
   {
     id: 2,
@@ -45,7 +45,7 @@ export default function Projects() {
               className={`group relative  ${project.color} backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-gray-600 transition-all duration-300 hover:scale-[1.01]`}
             >
               {/* Project Image/Mockup */}
-              <div className="relative h-56 sm:h-72 bg-linear-to-br from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden">
+              <div className="relative h-56 sm:h-72  flex items-center justify-center overflow-hidden">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -55,7 +55,7 @@ export default function Projects() {
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-gray-900/60 via-transparent to-transparent pointer-events-none" />
               </div>
-
+   
               {/* Content */}
               <div className="p-3 sm:p-5">
                 <div className="flex flex-wrap gap-2 mb-3">
