@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -17,8 +18,12 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const pathname = usePathname();
+  if (pathname?.startsWith('/dashboard')) return null;
+
   const navItems = [
     { to: "/#home", label: "Home" },
+    { to: "/events", label: "Events" },
     { to: "/about", label: "About" },
     { to: "/#projects", label: "Projects" },
     { to: "/contact", label: "Contact" },

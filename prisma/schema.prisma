@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EventStatus {
+  DRAFT
+  PUBLISHED
+  CANCELLED
+  COMPLETED
+}
+
+model Event {
+  id                    String        @id @default(uuid())
+  title                 String
+  slug                  String        @unique
+  shortDescription      String
+  fullDescription       String        @db.Text
+  featuredImage         String
+  galleryImages         String[]
+  category              String
+  organizer             String
+  venue                 String?
+  address               String?
+  city                  String?
+  country               String?
+  latitude              Float?
+  longitude             Float?
+  startDate             DateTime
+  endDate               DateTime
+  timezone              String        @default("UTC")
+  
+  isRegistrationEnabled Boolean       @default(true)
+  registrationDeadline  DateTime?
+  capacity              Int?
+  registeredCount       Int           @default(0)
+  price                 Float         @default(0)
+  currency              String        @default("USD")
+  isFree                Boolean       @default(true)
+  
+  status                EventStatus   @default(DRAFT)
+  featured              Boolean       @default(false)
+  tags                  String[]
+  faqs                  Json?
+  requirements          String[]
+  registrationLink      String?
+  
+  speakers              EventSpeaker[]
+  sponsors              EventSponsor[]
+  agenda                EventAgenda[]
+  registrations         Registration[]
+
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+  deletedAt             DateTime?
+
+  @@index([slug])
+  @@index([featured])
+  @@index([category])
+  @@index([startDate])
+  @@index([city])
+  @@index([status])
+  @@index([organizer])
+}
+
+model EventSpeaker {
+  id        String   @id @default(uuid())
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id])
+  name      String
+  title     String?
+  company   String?
+  bio       String?  @db.Text
+  avatar    String?
+  linkedin  String?
+  twitter   String?
+  website   String?
+}
+
+model EventSponsor {
+  id        String   @id @default(uuid())
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id])
+  name      String
+  logo      String?
+  website   String?
+  tier      String?  // e.g., Gold, Silver, Bronze
+}
+
+model EventAgenda {
+  id          String   @id @default(uuid())
+  eventId     String
+  event       Event    @relation(fields: [eventId], references: [id])
+  title       String
+  description String?  @db.Text
+  startTime   DateTime
+  endTime     DateTime
+  speakerIds  String[] // Could also be relations, keeping simple here
+}
+
+model Registration {
+  id                   String   @id @default(uuid())
+  eventId              String
+  event                Event    @relation(fields: [eventId], references: [id])
+  attendeeId           String?  // Optional, if user is logged in
+  attendeeName         String   // Required for public registration
+  attendeeEmail        String   // Required for public registration
+  registrationDate     DateTime @default(now())
+  status               String   @default("CONFIRMED")
+  ticketType           String   @default("GENERAL")
+  paymentStatus        String   @default("PENDING")
+  checkInStatus        Boolean  @default(false)
+  considerationDetails String?  @db.Text
+  promoStartDate       DateTime?
+  promoEndDate         DateTime?
+}
