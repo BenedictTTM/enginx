@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Event, apiClient } from "@/lib/api-client";
 import { X, Loader2, CheckCircle2 } from "lucide-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface RegistrationModalProps {
   event: Event;
@@ -13,11 +14,27 @@ export function RegistrationModal({ event, onClose }: RegistrationModalProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [consideration, setConsideration] = useState("");
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
   const isPromo = event.category?.toLowerCase() === "promo";
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: async (data: { attendeeName: string; attendeeEmail: string; considerationDetails?: string }) => {
+      const res = await apiClient.register(event.id, data);
+      if (!res.success) throw new Error(res.message || "Registration failed.");
+      return res.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["events"] });
+      queryClient.invalidateQueries({ queryKey: ["event", event.slug] });
+      setSuccess(true);
+    },
+    onError: (err: any) => {
+      setError(err.message || "An unexpected error occurred. Please try again.");
+    }
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,30 +47,16 @@ export function RegistrationModal({ event, onClose }: RegistrationModalProps) {
       }
     }
 
-    setLoading(true);
     setError(null);
-
-    try {
-      const res = await apiClient.register(event.id, {
-        attendeeName: name,
-        attendeeEmail: email,
-        ...(isPromo ? {
-          considerationDetails: consideration,
-        } : {})
-      });
-      if (res.success) {
-        setSuccess(true);
-      } else {
-        setError(res.message || "Registration failed.");
-      }
-    } catch (err) {
-      setError("An unexpected error occurred. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    mutation.mutate({
+      attendeeName: name,
+      attendeeEmail: email,
+      ...(isPromo ? { considerationDetails: consideration } : {})
+    });
   };
 
   const isFormValid = name.trim() && email.trim() && (!isPromo || consideration.trim());
+  const loading = mutation.isPending;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
@@ -103,7 +106,7 @@ export function RegistrationModal({ event, onClose }: RegistrationModalProps) {
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 outline-none transition-shadow"
+                  className="w-full px-4 py-2.5 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 outline-none transition-shadow text-neutral-900 bg-white"
                   placeholder="Jane Doe"
                   disabled={loading}
                 />
@@ -119,7 +122,7 @@ export function RegistrationModal({ event, onClose }: RegistrationModalProps) {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 outline-none transition-shadow"
+                  className="w-full px-4 py-2.5 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 outline-none transition-shadow text-neutral-900 bg-white"
                   placeholder="jane@example.com"
                   disabled={loading}
                 />
@@ -136,7 +139,7 @@ export function RegistrationModal({ event, onClose }: RegistrationModalProps) {
                     rows={3}
                     value={consideration}
                     onChange={(e) => setConsideration(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 outline-none transition-shadow text-sm"
+                    className="w-full px-4 py-2.5 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 outline-none transition-shadow text-sm text-neutral-900 bg-white"
                     placeholder="Explain when you should be considered or details about your application..."
                     disabled={loading}
                   />

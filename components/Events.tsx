@@ -1,48 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Event, apiClient } from "@/lib/api-client";
+import { apiClient } from "@/lib/api-client";
 import { EventCard, EventCardSkeleton } from "./EventCard";
 import { AlertCircle } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Events() {
-  const [events, setEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let mounted = true;
-
-    const fetchEvents = async () => {
-      try {
-        const res = await apiClient.getEvents({ status: "PUBLISHED" });
-        if (mounted) {
-          if (res.success && res.data) {
-            setEvents(res.data);
-          } else {
-            setError(res.message || "Failed to load events");
-          }
-        }
-      } catch (err) {
-        if (mounted) setError("Unable to connect to the server.");
-      } finally {
-        if (mounted) setLoading(false);
-      }
-    };
-
-    fetchEvents();
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  const { data: events = [], isLoading, error } = useQuery({
+    queryKey: ["events"],
+    queryFn: async () => {
+      const res = await apiClient.getEvents({ status: "PUBLISHED" });
+      if (!res.success) throw new Error(res.message || "Failed to load events");
+      return res.data || [];
+    }
+  });
 
   if (error) {
     return (
       <div className="w-full max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="bg-red-50 border border-red-100 p-6 rounded-xl flex items-center text-red-800">
           <AlertCircle className="w-6 h-6 mr-3 flex-shrink-0" />
-          <p>{error}</p>
+          <p>{error instanceof Error ? error.message : "Unable to connect to the server."}</p>
         </div>
       </div>
     );
@@ -60,7 +38,7 @@ export default function Events() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {loading ? (
+        {isLoading ? (
           Array.from({ length: 6 }).map((_, i) => <EventCardSkeleton key={i} />)
         ) : events.length > 0 ? (
           events.map((event) => <EventCard key={event.id} event={event} />)
