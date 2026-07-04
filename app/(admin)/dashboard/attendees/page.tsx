@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { apiClient, Attendee } from "@/lib/api-client";
-import { Loader2, Mail, Calendar, Download, ExternalLink } from "lucide-react";
+import { Loader2, Phone, Calendar, Download, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 interface ExtendedAttendee extends Attendee {
@@ -42,10 +42,10 @@ export default function AttendeesDashboardPage() {
 
   const handleExportCSV = () => {
     if (attendees.length === 0) return;
-    const headers = ["Name", "Email", "Event", "Ticket Type", "Status", "Registration Date"];
+    const headers = ["Name", "Phone", "Event", "Ticket Type", "Status", "Registration Date"];
     const rows = attendees.map(a => [
       a.attendeeName,
-      a.attendeeEmail,
+      a.attendeePhone || "N/A",
       a.event?.title || "N/A",
       a.ticketType,
       a.status,
@@ -84,7 +84,7 @@ export default function AttendeesDashboardPage() {
             <thead className="bg-[#071a35]/40 text-neutral-300 font-semibold border-b border-[#163b6b]/60">
               <tr>
                 <th className="px-6 py-4">Name</th>
-                <th className="px-6 py-4">Email</th>
+                <th className="px-6 py-4">Phone</th>
                 <th className="px-6 py-4">Event</th>
                 <th className="px-6 py-4">Ticket Type</th>
                 <th className="px-6 py-4">Status</th>
@@ -111,8 +111,8 @@ export default function AttendeesDashboardPage() {
                       {attendee.attendeeName}
                     </td>
                     <td className="px-6 py-4 text-gray-300 flex items-center">
-                      <Mail className="w-4.5 h-4.5 mr-2 text-neutral-400" />
-                      {attendee.attendeeEmail}
+                      <Phone className="w-4 h-4 mr-2 text-neutral-400" />
+                      {attendee.attendeePhone || "N/A"}
                     </td>
                     <td className="px-6 py-4">
                       {attendee.event ? (

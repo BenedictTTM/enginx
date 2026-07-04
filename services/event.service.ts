@@ -83,7 +83,7 @@ export class EventService {
   async registerForEvent(
     id: string, 
     attendeeName: string, 
-    attendeeEmail: string, 
+    attendeePhone: string, 
     attendeeId?: string, 
     ticketType: string = "GENERAL",
     considerationDetails?: string
@@ -109,7 +109,7 @@ export class EventService {
     const registration = await eventRepository.createRegistration({
       eventId: id,
       attendeeName,
-      attendeeEmail,
+      attendeePhone, 
       attendeeId, // Will be null if public user
       ticketType,
       paymentStatus: event.isFree ? "PAID" : "PENDING",

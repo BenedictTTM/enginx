@@ -2,7 +2,7 @@
 
 import { useEffect, useState, use } from "react";
 import { apiClient, Attendee } from "@/lib/api-client";
-import { Loader2, ArrowLeft, Download, Mail } from "lucide-react";
+import { Loader2, ArrowLeft, Download, Phone } from "lucide-react";
 import Link from "next/link";
 
 export default function EventAttendeesPage({ params }: { params: Promise<{ id: string }> }) {
@@ -50,7 +50,7 @@ export default function EventAttendeesPage({ params }: { params: Promise<{ id: s
             <thead className="bg-[#071a35]/40 text-neutral-300 font-semibold border-b border-[#163b6b]/60">
               <tr>
                 <th className="px-6 py-4">Name</th>
-                <th className="px-6 py-4">Email</th>
+                <th className="px-6 py-4">Phone</th>
                 <th className="px-6 py-4">Ticket Type</th>
                 <th className="px-6 py-4">Status</th>
                 <th className="px-6 py-4">Registration Date</th>
@@ -76,8 +76,8 @@ export default function EventAttendeesPage({ params }: { params: Promise<{ id: s
                       {attendee.attendeeName}
                     </td>
                     <td className="px-6 py-4 text-gray-300 flex items-center">
-                      <Mail className="w-4.5 h-4.5 mr-2 text-neutral-400" />
-                      {attendee.attendeeEmail}
+                      <Phone className="w-4 h-4 mr-2 text-neutral-400" />
+                      {attendee.attendeePhone || "N/A"}
                     </td>
                     <td className="px-6 py-4 text-gray-300">
                       {attendee.ticketType}

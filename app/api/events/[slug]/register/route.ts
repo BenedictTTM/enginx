@@ -6,25 +6,32 @@ import { ApiError, ValidationError } from "@/lib/api-error";
 export async function POST(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   try {
     const id = (await params).slug;
-    const body = await req.json();
+    let body;
+    try {
+      body = await req.json();
+    } catch {
+      throw new ValidationError("Invalid or missing JSON body", [
+        { field: "body", message: "Request body is empty or invalid JSON" }
+      ]);
+    }
     
     const attendeeName = body.attendeeName;
-    const attendeeEmail = body.attendeeEmail;
+    const attendeePhone = body.attendeePhone;
     const attendeeId = body.attendeeId; // Optional if logged in
     const ticketType = body.ticketType || "GENERAL";
     const considerationDetails = body.considerationDetails;
 
-    if (!attendeeName || !attendeeEmail) {
+    if (!attendeeName || !attendeePhone) {
       throw new ValidationError("Missing required fields", [
         { field: "attendeeName", message: "Name is required" },
-        { field: "attendeeEmail", message: "Email is required" }
+        { field: "attendeePhone", message: "Phone number is required" }
       ]);
     }
     
     const registration = await eventService.registerForEvent(
       id, 
       attendeeName, 
-      attendeeEmail, 
+      attendeePhone, 
       attendeeId, 
       ticketType,
       considerationDetails

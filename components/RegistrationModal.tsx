@@ -12,7 +12,7 @@ interface RegistrationModalProps {
 
 export function RegistrationModal({ event, onClose }: RegistrationModalProps) {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [consideration, setConsideration] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
@@ -21,7 +21,7 @@ export function RegistrationModal({ event, onClose }: RegistrationModalProps) {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: async (data: { attendeeName: string; attendeeEmail: string; considerationDetails?: string }) => {
+    mutationFn: async (data: { attendeeName: string; attendeePhone: string; considerationDetails?: string }) => {
       const res = await apiClient.register(event.id, data);
       if (!res.success) throw new Error(res.message || "Registration failed.");
       return res.data;
@@ -38,7 +38,7 @@ export function RegistrationModal({ event, onClose }: RegistrationModalProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) return;
+    if (!name.trim() || !phone.trim()) return;
 
     if (isPromo) {
       if (!consideration.trim()) {
@@ -50,12 +50,12 @@ export function RegistrationModal({ event, onClose }: RegistrationModalProps) {
     setError(null);
     mutation.mutate({
       attendeeName: name,
-      attendeeEmail: email,
+      attendeePhone: phone,
       ...(isPromo ? { considerationDetails: consideration } : {})
     });
   };
 
-  const isFormValid = name.trim() && email.trim() && (!isPromo || consideration.trim());
+  const isFormValid = name.trim() && phone.trim() && (!isPromo || consideration.trim());
   const loading = mutation.isPending;
 
   return (
@@ -84,8 +84,8 @@ export function RegistrationModal({ event, onClose }: RegistrationModalProps) {
               <CheckCircle2 className="w-16 h-16 text-green-500 mb-4" />
               <p className="text-neutral-600 mb-6">
                 {isPromo 
-                  ? `Thank you, ${name}! Your application was successful. We will send updates to ${email}.`
-                  : `Thank you, ${name}! Your registration was successful. We will send updates to ${email}.`}
+                  ? `Thank you, ${name}! Your application was successful. We will contact you at ${phone}.`
+                  : `Thank you, ${name}! Your registration was successful. We will contact you at ${phone}.`}
               </p>
               <button
                 onClick={onClose}
@@ -113,17 +113,17 @@ export function RegistrationModal({ event, onClose }: RegistrationModalProps) {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-1">
-                  Email Address
+                <label htmlFor="phone" className="block text-sm font-medium text-neutral-700 mb-1">
+                  Phone Number
                 </label>
                 <input
-                  id="email"
-                  type="email"
+                  id="phone"
+                  type="tel"
                   required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 outline-none transition-shadow text-neutral-900 bg-white"
-                  placeholder="jane@example.com"
+                  placeholder="+1 (555) 000-0000"
                   disabled={loading}
                 />
               </div>

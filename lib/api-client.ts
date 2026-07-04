@@ -67,7 +67,7 @@ export const apiClient = {
     id: string,
     data: {
       attendeeName: string;
-      attendeeEmail: string;
+      attendeePhone: string;
       considerationDetails?: string;
     }
   ): Promise<ApiResponse<Registration>> => {

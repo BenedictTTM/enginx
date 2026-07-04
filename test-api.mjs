@@ -51,7 +51,7 @@ async function runTests() {
   console.log('\n[3] Registering for Event...');
   const registerPayload = {
     attendeeName: 'John Doe',
-    attendeeEmail: 'john@example.com'
+    attendeePhone: '1234567890'
   };
   const regRes = await fetch(`${BASE_URL}/${eventId}/register`, {
     method: 'POST',

@@ -108,7 +108,8 @@ model Registration {
   event                Event    @relation(fields: [eventId], references: [id])
   attendeeId           String?  // Optional, if user is logged in
   attendeeName         String   // Required for public registration
-  attendeeEmail        String   // Required for public registration
+  attendeeEmail        String?  // Optional for public registration
+  attendeePhone        String?  // Phone number for registration
   registrationDate     DateTime @default(now())
   status               String   @default("CONFIRMED")
   ticketType           String   @default("GENERAL")

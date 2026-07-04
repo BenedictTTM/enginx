@@ -51,6 +51,10 @@ export class EmailService {
 
   async sendEventRegistrationEmail(registration: Registration, event: Event): Promise<boolean> {
     try {
+      if (!registration.attendeeEmail) {
+        console.info("No email address provided for registration. Skipping confirmation email.");
+        return false;
+      }
       const transporter = this.getTransporter();
       if (!transporter) return false;
 
