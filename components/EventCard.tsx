@@ -77,7 +77,7 @@ export function EventCard({ event }: EventCardProps) {
                 onClick={() => setIsModalOpen(true)}
                 className="bg-neutral-900 hover:bg-neutral-800 text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 outline-none"
               >
-                Register
+                {event.category?.toLowerCase() === "promo" ? "Apply" : "Register"}
               </button>
             )}
           </div>

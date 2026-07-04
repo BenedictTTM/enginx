@@ -155,7 +155,7 @@ export default function EventDetailPage({ params }: { params: Promise<{ slug: st
                   onClick={() => setIsModalOpen(true)}
                   className="w-full bg-white hover:bg-gray-100 text-[#021128] py-3.5 rounded-xl font-bold tracking-wide transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-white outline-none text-center block"
                 >
-                  Register Now
+                  {event.category?.toLowerCase() === "promo" ? "Apply Now" : "Register Now"}
                 </button>
               ) : (
                 <div className="bg-gray-900/50 p-4 rounded-xl border border-gray-800 text-center text-sm text-gray-500">

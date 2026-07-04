@@ -12,6 +12,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ slu
     const attendeeEmail = body.attendeeEmail;
     const attendeeId = body.attendeeId; // Optional if logged in
     const ticketType = body.ticketType || "GENERAL";
+    const considerationDetails = body.considerationDetails;
 
     if (!attendeeName || !attendeeEmail) {
       throw new ValidationError("Missing required fields", [
@@ -25,11 +26,13 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ slu
       attendeeName, 
       attendeeEmail, 
       attendeeId, 
-      ticketType
+      ticketType,
+      considerationDetails
     );
     
     return ApiResponse.success("Successfully registered for the event", registration, 201);
   } catch (error) {
+    console.error("Error in registration route:", error);
     if (error instanceof ApiError) {
       return ApiResponse.error(error.message, error.errors, error.statusCode);
     }

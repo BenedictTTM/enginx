@@ -115,6 +115,4 @@ model Registration {
   paymentStatus        String   @default("PENDING")
   checkInStatus        Boolean  @default(false)
   considerationDetails String?  @db.Text
-  promoStartDate       DateTime?
-  promoEndDate         DateTime?
 }

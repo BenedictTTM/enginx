@@ -85,7 +85,8 @@ export class EventService {
     attendeeName: string, 
     attendeeEmail: string, 
     attendeeId?: string, 
-    ticketType: string = "GENERAL"
+    ticketType: string = "GENERAL",
+    considerationDetails?: string
   ) {
     const event = await this.getEventById(id);
     
@@ -111,7 +112,8 @@ export class EventService {
       attendeeEmail,
       attendeeId, // Will be null if public user
       ticketType,
-      paymentStatus: event.isFree ? "PAID" : "PENDING"
+      paymentStatus: event.isFree ? "PAID" : "PENDING",
+      considerationDetails
     });
 
     // Also increment registeredCount on Event

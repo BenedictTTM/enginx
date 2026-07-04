@@ -63,7 +63,14 @@ export const apiClient = {
     return res.json();
   },
 
-  register: async (id: string, data: { attendeeName: string; attendeeEmail: string }): Promise<ApiResponse<Registration>> => {
+  register: async (
+    id: string,
+    data: {
+      attendeeName: string;
+      attendeeEmail: string;
+      considerationDetails?: string;
+    }
+  ): Promise<ApiResponse<Registration>> => {
     const res = await fetch(`/api/events/${id}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
